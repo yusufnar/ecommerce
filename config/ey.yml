@@ -28,7 +28,7 @@ defaults:
 
   # Default migration command to run when migrations are enabled.
   #
-  migration_command: rake db:migrate --trace
+  migration_command: bundle exec rake railties:install:migrations && bundle exec rake db:migrate && bundle exec rake db:seed && bundle exec rake spree_sample:load
 
   # Enables rails assets precompilation always and halts when the task fails.
   #
@@ -173,7 +173,7 @@ defaults:
 environments:
   spree_dev:
     migrate: true
-    migration_command: rake railties:install:migrations && rake db:migrate && rake db:seed && rake spree_sample:load
+    migration_command: bundle exec rake railties:install:migrations && bundle exec rake db:migrate && bundle exec rake db:seed && bundle exec rake spree_sample:load
     precompile_unchanged_assets: true
     copy_exclude:
       - .git
